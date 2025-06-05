@@ -29,7 +29,7 @@ app.use(express.urlencoded({ extended: true }));
 
 
 // MongoDB connection
-mongoose.connect('mongodb://127.0.0.1:27017/my_database', {
+mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 })
@@ -75,7 +75,7 @@ app.listen(PORT, () => {
 
 // Initial database connection for seeding roles
 db.mongoose
-  .connect("mongodb://127.0.0.1:27017/my_database")
+  .connect("mongodb://127.0.0.1:27017/catalogue_db")
   .then(() => {
     console.log("Successfully connected to MongoDB.");
     initial(); // Seed roles
