@@ -4,7 +4,7 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const path = require('path');
 const db = require("./app/models");
-
+require('dotenv').config();
 const multer = require('multer');
 
 // Create an instance of Express app
@@ -29,12 +29,11 @@ app.use(express.urlencoded({ extended: true }));
 
 
 // MongoDB connection
-mongoose.connect(process.env.MONGODB_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-})
+mongoose.connect(process.env.MONGODB_URI)
   .then(() => console.log('MongoDB connected'))
   .catch(err => console.log('MongoDB error:', err));
+
+
 
 // Simple root route for testing
 app.get("/", (req, res) => {
